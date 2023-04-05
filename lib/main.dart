@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           AuthPage.id: (context) => AuthPage(),
           HomeScreen.id: (context) => HomeScreen(),
           NGOScreen.id: (context) => NGOScreen(),
-          // UserProfileScreen.id: (context) => UserProfileScreen(),
+          UserProfileScreen.id: (context) => UserProfileScreen(),
           BottomNavigation.id: (context) => BottomNavigation(),
           NGOProfile.id: (context) => NGOProfile(),
         },
