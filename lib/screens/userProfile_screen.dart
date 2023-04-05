@@ -50,10 +50,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           size: 22,
                         ),
                         onPressed: () {
-                          final provider = Provider.of<GoogleSignInProvider>(
-                              context,
-                              listen: false);
-                          provider.logout();
+                          FirebaseAuth.instance.signOut();
+                          // final provider = Provider.of<GoogleSignInProvider>(
+                          //     context,
+                          //     listen: false);
+                          // provider.logout();
                           Navigator.pushNamed(context, WelcomeScreen.id);
                         },
                       ),

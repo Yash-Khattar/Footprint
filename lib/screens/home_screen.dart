@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Consumer<PedometerProvider>(
       builder: (context, PedometerModel, child) {
         int steps = PedometerModel.pedometerData["steps"];
+        // int steps = 6540;
         int calories = PedometerModel.pedometerData["calories"];
         int distance = PedometerModel.pedometerData["distance"];
         int duration = PedometerModel.pedometerData["duration"];
