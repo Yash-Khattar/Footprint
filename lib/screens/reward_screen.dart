@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../coupons.dart';
 import '../const.dart';
 
@@ -12,13 +13,26 @@ class RewardPage extends StatefulWidget {
 }
 
 class _RewardPageState extends State<RewardPage> with TickerProviderStateMixin {
-  int currentPageIndex = 0;
+  // int currentPageIndex = 0;
   late TabController _tabController;
-
+  int activeTabIndex = 0;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    void setActiveTabIndex() {
+      setState(() {
+        activeTabIndex = _tabController.index;
+      });
+    }
+
+    _tabController.addListener(setActiveTabIndex);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -166,31 +180,86 @@ class _RewardPageState extends State<RewardPage> with TickerProviderStateMixin {
               //         ],
               //       )),
               // ),
-              TabBar(
-                controller: _tabController,
-                indicatorColor: kgreenColor,
-                labelColor: kgreyColor,
-                splashFactory: InkSparkle.splashFactory,
-                tabs: const <Widget>[
-                  Tab(
-                    text: "Coupon",
-                    icon: Icon(Icons.discount),
+              // TabBar(
+              //   controller: _tabController,
+              //   indicatorColor: kgreenColor,
+              //   labelColor: kgreyColor,
+              //   splashFactory: InkSparkle.splashFactory,
+              //   tabs: const <Widget>[
+              //     Tab(
+              //       text: "Coupon",
+              //       icon: Icon(Icons.discount),
+              //     ),
+              //     Tab(
+              //       text: "Products",
+              //       icon: Icon(Icons.shopping_cart),
+              //     ),
+              //   ],
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: Colors.black12,
+                    //     blurRadius: 3.0,
+                    //     // spreadRadius: 0.5,
+                    //     offset: Offset(1.0, 1.0),
+                    //   )
+                    // ],
                   ),
-                  Tab(
-                    text: "Products",
-                    icon: Icon(Icons.shopping_cart),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        // color: Colors.black.withOpacity(0.15),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TabBar(
+                        tabs: [
+                          Tab(
+                            child: Text(
+                              'Coupons',
+                              style: TextStyle(
+                                  color: activeTabIndex == 0
+                                      ? kwhiteColor
+                                      : kgreyColor),
+                            ),
+                          ),
+                          Tab(
+                            child: Text(
+                              'Products',
+                              style: TextStyle(
+                                  color: activeTabIndex == 1
+                                      ? kwhiteColor
+                                      : kgreyColor),
+                            ),
+                          ),
+                        ],
+                        indicator: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: kgreenColor,
+                        ),
+                        controller: _tabController,
+                        isScrollable: true,
+                        labelPadding: EdgeInsets.symmetric(horizontal: 40),
+                      ),
+                    ),
                   ),
-                ],
+                ),
               ),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
                     Center(
-                      child: ProductList(_tabController.index),
+                      child: CouponList(),
                     ),
                     Center(
-                      child: ProductList(_tabController.index),
+                      child: ProductList(),
                     ),
                   ],
                 ),
@@ -203,34 +272,46 @@ class _RewardPageState extends State<RewardPage> with TickerProviderStateMixin {
   }
 }
 
-class ProductList extends StatefulWidget {
-  final tabIdx;
-
-  ProductList(this.tabIdx);
-
-  @override
-  State<ProductList> createState() => _ProductListState();
-}
-
-class _ProductListState extends State<ProductList> {
+class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridView(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.66, // Change
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: GridView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.80, // Change
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
+        children: dummyHealthProducts
+            .map((data) =>
+                ProductCard(data.title, data.imageUrl, data.donations))
+            .toList(),
       ),
-      children: widget.tabIdx == 0
-          ? coupons
-              .map((data) =>
-                  ProductCard(data.title, data.imageUrl, data.donations))
-              .toList()
-          : dummyHealthProducts
-              .map((data) =>
-                  ProductCard(data.title, data.imageUrl, data.donations))
-              .toList(),
+    );
+  }
+}
+
+class CouponList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: GridView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.80, // Change
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+        ),
+        children: coupons
+            .map((data) =>
+                ProductCard(data.title, data.imageUrl, data.donations))
+            .toList(),
+      ),
     );
   }
 }
@@ -264,9 +345,11 @@ class ProductCard extends StatelessWidget {
           color: kgreyColor,
           padding: EdgeInsets.symmetric(vertical: 10),
           width: double.maxFinite,
-          child: Text(
-            title,
-            style: TextStyle(color: kmutedwhiteColor, fontSize: 16),
+          child: RichText(
+            text: TextSpan(
+              text: title,
+              style: TextStyle(color: kwhiteColor, fontSize: 16),
+            ),
             textAlign: TextAlign.center,
           ),
         ),
@@ -279,7 +362,7 @@ class ProductCard extends StatelessWidget {
             color: kgreenColor,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -104,7 +104,7 @@ class _NGOScreenState extends State<NGOScreen> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "${(PedometerModel.pedometerData["steps"] / 10)} FP",
+                              "${(PedometerModel.pedometerData["steps"] / 100)} FP",
                               style: TextStyle(color: kgreyColor, fontSize: 20),
                             ),
                           ],
