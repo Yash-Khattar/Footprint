@@ -153,7 +153,7 @@ class _SignUpState extends State<SignUp> {
                         contentPadding: EdgeInsets.all(5),
                         prefixIcon: Icon(Icons.key_sharp),
                       ),
-                      keyboardType: TextInputType.visiblePassword,
+                      keyboardType: TextInputType.text,
                     ),
                     InkWell(
                       onTap: () {

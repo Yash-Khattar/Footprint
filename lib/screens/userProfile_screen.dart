@@ -69,10 +69,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   backgroundColor: kwhiteColor,
                   child: CircleAvatar(
                     backgroundColor: kgreenColor,
-                    child: Icon(
-                      Icons.person_4_sharp,
-                      size: 60,
-                      color: kgreyColor,
+                    child: Image.asset(
+                      "assets/profile_pic.png",
+                      fit: BoxFit.contain,
                     ),
                     radius: 65,
                   ),

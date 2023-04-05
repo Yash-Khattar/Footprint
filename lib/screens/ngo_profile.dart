@@ -14,6 +14,24 @@ class NGOProfile extends StatefulWidget {
 
 class _NGOProfileState extends State<NGOProfile> {
   @override
+  Future<void> DialogCard(BuildContext context) {
+    {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            clipBehavior: Clip.hardEdge,
+            child: Image.asset("assets/share.png", fit: BoxFit.cover),
+          );
+        },
+      );
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: kgreyColor,
@@ -167,7 +185,9 @@ class _NGOProfileState extends State<NGOProfile> {
                     child: Center(
                         child: PrimaryButton(
                             text: "            Donate            ",
-                            onpressed: () {},
+                            onpressed: () {
+                              // return DialogCard(context);
+                            },
                             color: kgreenColor)),
                   ),
                 ],

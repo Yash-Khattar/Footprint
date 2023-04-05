@@ -68,8 +68,8 @@ class _RewardPageState extends State<RewardPage> with TickerProviderStateMixin {
                 child: const Text(
                   "Rewards",
                   style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
                       color: kgreyColor),
                 ),
               ),

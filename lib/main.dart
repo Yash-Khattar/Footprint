@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: WelcomeScreen.id,
+        initialRoute: user == null ? WelcomeScreen.id : HomeScreen.id,
         routes: {
           WelcomeScreen.id: (context) => WelcomeScreen(),
           AuthPage.id: (context) => AuthPage(),
