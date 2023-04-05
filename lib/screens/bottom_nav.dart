@@ -93,7 +93,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       });
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 250),
+                      duration: Duration(milliseconds: 230),
                       width: 40,
                       decoration: BoxDecoration(
                         border: i == selectedIndex
