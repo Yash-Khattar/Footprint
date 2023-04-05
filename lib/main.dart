@@ -6,6 +6,7 @@ import 'package:footprint/providers/pedometer_provider.dart';
 import 'package:footprint/screens/auth_screen.dart';
 import 'package:footprint/screens/bottom_nav.dart';
 import 'package:footprint/screens/home_screen.dart';
+import 'package:footprint/screens/ngo_profile.dart';
 import 'package:footprint/screens/ngo_screen.dart';
 import 'package:footprint/screens/userProfile_screen.dart';
 import 'package:footprint/screens/welcome_screen.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           NGOScreen.id: (context) => NGOScreen(),
           // UserProfileScreen.id: (context) => UserProfileScreen(),
           BottomNavigation.id: (context) => BottomNavigation(),
+          NGOProfile.id: (context) => NGOProfile(),
         },
         // home: WelcomeScreen(),
       ),
