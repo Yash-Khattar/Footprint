@@ -3,6 +3,7 @@ import 'package:footprint/const.dart';
 import 'package:footprint/reusable_widgets/button.dart';
 import 'package:footprint/screens/bottom_nav.dart';
 import 'package:footprint/screens/ngo_screen.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class NGOProfile extends StatefulWidget {
   const NGOProfile({super.key});
@@ -183,12 +184,30 @@ class _NGOProfileState extends State<NGOProfile> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Center(
-                        child: PrimaryButton(
-                            text: "            Donate            ",
-                            onpressed: () {
-                              // return DialogCard(context);
-                            },
-                            color: kgreenColor)),
+                      child: PrimaryButton(
+                          text: "            Donate            ",
+                          onpressed: () {
+                            Alert(
+                                context: context,
+                                image: Image.asset("assets/share.png"),
+                                padding: EdgeInsets.only(
+                                    left: 16, right: 16, top: 8),
+                                closeIcon: Icon(Icons.abc, size: 0),
+                                buttons: [
+                                  DialogButton(
+                                    child: Text(
+                                      "Share",
+                                      style: TextStyle(
+                                          color: kgreyColor,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    onPressed: () => null,
+                                    color: kgreenColor,
+                                  )
+                                ]).show();
+                          },
+                          color: kgreenColor),
+                    ),
                   ),
                 ],
               ),

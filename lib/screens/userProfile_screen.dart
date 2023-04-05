@@ -112,7 +112,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           SizedBox(height: 10),
           InfoTile(
               icon: FontAwesomeIcons.one,
-              title: "Yash Khattar",
+              title: "Yash Khattar (You)",
               subtext: "10213 steps",
               color: kgreyColor),
           InfoTile(
