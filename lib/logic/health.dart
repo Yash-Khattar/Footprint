@@ -37,6 +37,7 @@ class Health {
     var midnight = DateTime(now.year, now.month, now.day);
     int? steps = await health.getTotalStepsInInterval(midnight, now);
     steps ??= 2000;
+    // steps = 6450;
     print(steps);
     calories = (steps * 0.045).toInt();
     distance = (steps / 1312.33595801).round();
