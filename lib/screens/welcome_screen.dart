@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:footprint/const.dart';
 import 'package:footprint/providers/pedometer_provider.dart';
 import 'package:footprint/reusable_widgets/button.dart';
-// import 'package:footprint/screens/auth_screen.dart';
+import 'package:footprint/screens/auth_screen.dart';
 import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                       text: "Continue",
                       onpressed: () {
                         PedometerModel.getPermission();
-                        // Navigator.pushNamed(context, AuthPage.id);
+                        Navigator.pushNamed(context, AuthPage.id);
                       },
                     ),
                   ),

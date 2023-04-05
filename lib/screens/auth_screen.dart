@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:footprint/const.dart';
 import 'package:footprint/providers/googleSignIn_provider.dart';
 import 'package:footprint/reusable_widgets/button.dart';
-// import 'package:footprint/screens/bottom_nav.dart';
+import 'package:footprint/screens/bottom_nav.dart';
 import 'package:provider/provider.dart';
 
 bool isLogin = true;
@@ -306,7 +306,7 @@ class _SignUpState extends State<SignUp> {
                           context,
                           listen: false);
                       provider.googleLogin();
-                      // Navigator.pushNamed(context, BottomNavigation.id);
+                      Navigator.pushNamed(context, BottomNavigation.id);
                     },
                     icon: FontAwesomeIcons.google),
                 // Container(
@@ -355,7 +355,7 @@ class _SignUpState extends State<SignUp> {
         email: _emailController.text.trim(),
         password: _passController.text.trim(),
       );
-      // Navigator.pushNamed(context, BottomNavigation.id);
+      Navigator.pushNamed(context, BottomNavigation.id);
     } on FirebaseAuthException catch (error) {
       setState(() {
         print(error.code);
@@ -392,7 +392,7 @@ class _SignUpState extends State<SignUp> {
           email: _emailController.text.trim(),
           password: _passController.text.trim(),
         );
-        // Navigator.pushNamed(context, BottomNavigation.id);
+        Navigator.pushNamed(context, BottomNavigation.id);
       }
     } on FirebaseAuthException catch (error) {
       setState(
